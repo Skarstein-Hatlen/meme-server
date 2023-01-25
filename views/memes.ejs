@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Memes</title>
+    <!-- BM Chaneg the path to the css files -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../stylesheets/memes/memes.css">
+</head>
+
+<body class="position-relative" data-bs-spy="scroll">
+    <%- include('./partials/navbar.ejs') %>
+    <section class="container">
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% memes.forEach(meme => { %>
+                    <tr key=<%= meme.id %> >
+                        <th scope="row"><%= meme.name %></th>
+                        <td><img src=<%= meme.url %> width="50" height="50"/></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>   
+    </section>
+    <%- include('./partials/scripts.ejs') %>
+</body>
+
+</html>

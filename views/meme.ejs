@@ -9,7 +9,7 @@
 </head>
 
 <body class="position-relative" data-bs-spy="scroll">
-  <%- include('./partials/navbar.ejs') %>
+  <%- include('./partials/navbar.ejs', {user: user}) %>
   <section class="container">
     <div class="card">
         <img src="<%= meme.url %>" class="card-img-top" alt="<%= meme.name %>">

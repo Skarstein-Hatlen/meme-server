@@ -9,9 +9,7 @@ var JsonStore = require('express-session-json')(session);
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
-var memeRouter = require('./routes/meme');
 var memesRouter = require('./routes/memes');
-var memesVipRouter = require('./routes/memesVIP')
 
 // var highlightsRouter = require('./routes/highlights');
 
@@ -39,9 +37,7 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
-app.use('/meme', memeRouter);
 app.use('/memes', memesRouter);
-app.use('/login/memesVIP', memesVipRouter);
 
 // app.use('/highlights', highlightsRouter);
 

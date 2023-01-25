@@ -31,10 +31,17 @@ passport.use(new LocalStrategy(function verify(username, password, cb) {
     }
 }));
 
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
+router.post('/auth', passport.authenticate('local', {
+    successRedirect: '/memes',
+    failureRedirect: '/login',
 }));
+
+router.post('/logout', function(req, res, next) {
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.redirect('/login');
+    });
+});
 
 router.get('/', function(req, res, next) {
     if(!req.user) {
@@ -43,17 +50,6 @@ router.get('/', function(req, res, next) {
     else {
         res.render('login', {user: req.user});
     }
-});
-
-router.get('/login/memesVIP', function(req, res, next) {
-    res.render("login/memesVIP", { memes });
-    });
-
-router.post('/logout', function(req, res, next) {
-    req.logout(function(err) {
-        if (err) { return next(err); }
-        res.redirect('/login');
-    });
 });
 
 module.exports = router

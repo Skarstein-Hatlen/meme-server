@@ -53,5 +53,25 @@
             }
         }
     </script>
+    <script>
+        let searchBtn = document.getElementById("searchBtn");
+        let searchInput = document.getElementById("searchInput");
+        let table = document.getElementById("table");    
+        searchBtn.addEventListener("click", function(){
+            let filter = searchInput.value.toUpperCase();
+            let rows = table.getElementsByTagName("tr");
+            for (let i = 0; i < rows.length; i++) {
+                let name = rows[i].getElementsByTagName("th")[0];
+                if (name) {
+                    if (name.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        });
+    </script>
+    
 </body>
 </html>

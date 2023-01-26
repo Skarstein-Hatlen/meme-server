@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Memes</title>
+    <!-- BM Chaneg the path to the css files -->
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../stylesheets/memes/memes.css">
+</head>
+
+<body class="position-relative" data-bs-spy="scroll">
+    <%- include('./partials/navbar.ejs') %>
+    <section class="container">
+        <form class="form-inline d-flex justify-content-center">
+            <input class="form-control mr-sm-2 w-25" type="search" placeholder="Search" id="searchInput">
+            <br>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchBtn">Search</button>
+        </form>
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Image</th>
+                    <% if(user){ %>
+                        <th scope="col">Details</th>
+                    <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <% memes.forEach(meme => { %>
+                    <tr key=<%= meme.id %> class="meme-row">
+                        <th scope="row"><%= meme.name %></th>
+                        <td><img src=<%= meme.url %> width="50" height="50"/></td>
+                        <% if(user){ %>
+                            <td scope="row">
+                                <a href="/memesDetails/<%= meme.id %>" target="_blank">
+                                    <button onclick="changeBackground(this)">Details</button>
+                                </a>
+                            </td>
+                        <% } %>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>   
+    </section>
+    <%- include('./partials/scripts.ejs') %>
+    <script>
+        function changeBackground(element) {
+            let row = element.closest("tr");
+            let currentClass = row.className;
+            if (currentClass.indexOf("selected") === -1) {
+                row.className += " selected";
+            }
+        }
+    </script>
+</body>
+</html>

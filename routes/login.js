@@ -32,14 +32,14 @@ passport.use(new LocalStrategy(function verify(username, password, cb) {
 }));
 
 router.post('/auth', passport.authenticate('local', {
-    successRedirect: '/memes',
-    failureRedirect: '/login',
+    successRedirect: '/memesOverview',
+    failureRedirect: '/login'
 }));
 
 router.post('/logout', function(req, res, next) {
     req.logout(function(err) {
         if (err) { return next(err); }
-        res.redirect('/login');
+        res.redirect('/memesOverview');
     });
 });
 

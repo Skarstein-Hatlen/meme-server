@@ -6,6 +6,19 @@ const env = require('../env.json');
 
 let memes;
 
+router.post("/:id", (req, res) => {
+    if(memes){
+        const meme = memes.find(m => m.id === req.params.id);
+        if(meme){
+            res.render("memeDetails", { meme: meme, user: req.user});
+        } else {
+            res.status(404).send("Meme not found");
+        }
+    } else {
+        res.status(404).send("Memes not found");
+    }
+});
+
 router.get("/", (req, res) => {
     axios.get(env.API_URL)
         .then(response => {
@@ -20,4 +33,4 @@ router.get("/", (req, res) => {
         });
 });
 
-module.exports = router;
+module.exports = router

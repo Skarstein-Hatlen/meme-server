@@ -6,7 +6,7 @@ const env = require('../env.json');
 
 let memes;
 
-router.post("/:id", (req, res) => {
+router.get("/:id", (req, res) => {
     if(memes){
         const meme = memes.find(m => m.id === req.params.id);
         if(meme){
